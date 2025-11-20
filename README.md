@@ -1,17 +1,17 @@
 # Perficient Demo - BDD Automation Tests
 
-Este proyecto contiene pruebas automatizadas BDD (Behavior-Driven Development) para el sitio web de Perficient utilizando Java, Maven, Cucumber y TestNG.
+This project contains BDD (Behavior-Driven Development) automated tests for the Perficient website using Java, Maven, Cucumber, and TestNG.
 
-## Tecnologías Utilizadas
+## Technologies Used
 
 - **Java 11**
-- **Maven** - Gestión de dependencias y construcción del proyecto
-- **Cucumber** - Framework BDD para escribir pruebas en lenguaje natural
-- **TestNG** - Framework de pruebas
-- **Selenium WebDriver** - Automatización del navegador
-- **WebDriverManager** - Gestión automática de drivers del navegador
+- **Maven** - Dependency management and project build tool
+- **Cucumber** - BDD framework for writing tests in natural language
+- **TestNG** - Testing framework
+- **Selenium WebDriver** - Browser automation
+- **WebDriverManager** - Automatic browser driver management
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 perficient-demo/
@@ -20,91 +20,90 @@ perficient-demo/
 │       ├── java/
 │       │   └── com/
 │       │       └── perficient/
-│       │           ├── hooks/          # Hooks de Cucumber (Before/After)
+│       │           ├── hooks/          # Cucumber Hooks (Before/After)
 │       │           ├── pages/          # Page Object Model
-│       │           ├── runners/        # Test Runner de Cucumber
+│       │           ├── runners/        # Cucumber Test Runner
 │       │           ├── stepdefinitions/# Step Definitions
-│       │           └── utils/          # Utilidades (DriverManager, ConfigReader)
+│       │           └── utils/          # Utilities (DriverManager, ConfigReader)
 │       └── resources/
-│           ├── features/               # Archivos .feature de Cucumber
-│           ├── application.properties  # Configuración de la aplicación
-│           └── cucumber.properties    # Configuración de Cucumber
-├── pom.xml                            # Configuración de Maven
-├── testng.xml                         # Configuración de TestNG
+│           ├── features/               # Cucumber .feature files
+│           ├── application.properties  # Application configuration
+│           └── cucumber.properties    # Cucumber configuration
+├── pom.xml                            # Maven configuration
+├── testng.xml                         # TestNG configuration
 └── README.md
 ```
 
-## Requisitos Previos
+## Prerequisites
 
-- Java JDK 11 o superior
-- Maven 3.6 o superior
-- Navegador Chrome, Firefox o Edge instalado
+- Java JDK 11 or higher
+- Maven 3.6 or higher
+- Chrome, Firefox, or Edge browser installed
 
-## Configuración
+## Setup
 
-1. Clonar o descargar el proyecto
-2. Asegurarse de tener Java y Maven instalados
-3. Configurar las propiedades en `src/test/resources/application.properties`:
-   - `base.url`: URL base del sitio web
-   - `browser`: Navegador a utilizar (chrome, firefox, edge)
-   - `headless`: Ejecutar en modo headless (true/false)
-   - `implicit.wait`: Tiempo de espera implícito en segundos
+1. Clone or download the project
+2. Ensure Java and Maven are installed
+3. Configure properties in `src/test/resources/application.properties`:
+   - `base.url`: Base URL of the website
+   - `browser`: Browser to use (chrome, firefox, edge)
+   - `headless`: Run in headless mode (true/false)
+   - `implicit.wait`: Implicit wait time in seconds
 
-## Ejecución de Pruebas
+## Running Tests
 
-### Ejecutar todas las pruebas
+### Run all tests
 ```bash
 mvn clean test
 ```
 
-### Ejecutar pruebas con un tag específico
-Editar `testng.xml` o modificar el tag en `@CucumberOptions` en `TestRunner.java`:
+### Run tests with a specific tag
+Edit `testng.xml` or modify the tag in `@CucumberOptions` in `TestRunner.java`:
 ```java
-tags = "@smoke"  // Solo pruebas con tag @smoke
+tags = "@smoke"  // Only tests with @smoke tag
 ```
 
-### Ejecutar una feature específica
+### Run a specific feature
 ```bash
 mvn test -Dcucumber.filter.tags="@smoke"
 ```
 
-## Tags Disponibles
+## Available Tags
 
-- `@smoke` - Pruebas críticas de humo
-- `@regression` - Pruebas de regresión completas
+- `@smoke` - Critical smoke tests
+- `@regression` - Complete regression tests
 
-## Reportes
+## Reports
 
-Después de la ejecución, los reportes se generan en:
-- **HTML**: `target/cucumber-reports/index.html`
+After execution, reports are generated in:
+- **HTML**: `target/cucumber-reports/html/index.html`
 - **JSON**: `target/cucumber-reports/Cucumber.json`
 - **XML**: `target/cucumber-reports/Cucumber.xml`
 
-## Escribir Nuevas Pruebas
+## Writing New Tests
 
-1. Crear un archivo `.feature` en `src/test/resources/features/`
-2. Escribir los escenarios en lenguaje Gherkin
-3. Implementar los step definitions en `src/test/java/com/perficient/stepdefinitions/`
-4. Crear o actualizar Page Objects en `src/test/java/com/perficient/pages/` si es necesario
+1. Create a `.feature` file in `src/test/resources/features/`
+2. Write scenarios in Gherkin language
+3. Implement step definitions in `src/test/java/com/perficient/stepdefinitions/`
+4. Create or update Page Objects in `src/test/java/com/perficient/pages/` if necessary
 
-## Ejemplo de Feature
+## Feature Example
 
 ```gherkin
 @smoke
-Feature: Página Principal
-  Scenario: Verificar carga de página
-    Given que el usuario navega a la página principal de Perficient
-    When la página se carga completamente
-    Then el usuario debería ver el encabezado principal "AI-First"
+Feature: Home Page
+  Scenario: Verify page load
+    Given the user navigates to the Perficient home page
+    When the page loads completely
+    Then the user should see the main heading "AI-First"
 ```
 
-## Notas
+## Notes
 
-- El proyecto utiliza WebDriverManager para gestionar automáticamente los drivers del navegador
-- Las capturas de pantalla se toman automáticamente cuando un escenario falla
-- El proyecto está configurado para ejecutar pruebas en paralelo (configurable en testng.xml)
+- The project uses WebDriverManager to automatically manage browser drivers
+- Screenshots are automatically taken when a scenario fails
+- The project is configured to run tests in parallel (configurable in testng.xml)
 
-## Autor
+## Author
 
-Proyecto creado para demostración de automatización BDD con Cucumber y TestNG.
-
+Project created for BDD automation demonstration with Cucumber and TestNG.
