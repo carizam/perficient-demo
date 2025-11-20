@@ -14,3 +14,11 @@ Feature: Navigation on Perficient website
   Scenario: Discover the company capabilities
     When the user clicks on the link "Discover Our Capabilities"
     Then the page should be loaded correctly
+
+  Scenario: Navigate to AI-First Vision and verify URL
+    When the user clicks on the link "Explore Our AI-First Vision"
+    Then the URL should contain "ai"
+
+  Scenario: Navigate to Apply Today link
+    When the user clicks on the link "Apply Today"
+    Then the URL should contain "careers"
