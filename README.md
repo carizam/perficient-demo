@@ -29,6 +29,11 @@ perficient-demo/
 │           ├── features/               # Cucumber .feature files
 │           ├── application.properties  # Application configuration
 │           └── cucumber.properties    # Cucumber configuration
+├── .github/
+│   └── workflows/                     # GitHub Actions workflows
+│       ├── ci.yml                     # Main CI/CD pipeline
+│       ├── pr-checks.yml              # PR validation workflow
+│       └── full-test.yml              # Scheduled full test suite
 ├── pom.xml                            # Maven configuration
 ├── testng.xml                         # TestNG configuration
 └── README.md
@@ -67,6 +72,46 @@ tags = "@smoke"  // Only tests with @smoke tag
 ```bash
 mvn test -Dcucumber.filter.tags="@smoke"
 ```
+
+## CI/CD with GitHub Actions
+
+This project includes GitHub Actions workflows for continuous integration and deployment:
+
+### Workflows
+
+1. **CI/CD Pipeline** (`.github/workflows/ci.yml`)
+   - Triggers on push/PR to `main` or `develop` branches
+   - Runs tests with matrix strategy (multiple browsers and tags)
+   - Uploads test reports as artifacts
+   - Can be manually triggered via `workflow_dispatch`
+
+2. **PR Checks** (`.github/workflows/pr-checks.yml`)
+   - Runs quick smoke tests on pull requests
+   - Fast feedback for code changes
+   - Uploads test reports for review
+
+3. **Full Test Suite** (`.github/workflows/full-test.yml`)
+   - Scheduled to run daily at 2 AM UTC
+   - Executes complete test suite
+   - Can be manually triggered
+   - Long-term artifact retention (90 days)
+
+### Workflow Features
+
+- ✅ Automatic test execution on code changes
+- ✅ Matrix testing across browsers and test tags
+- ✅ Test report artifacts (HTML, JSON, XML)
+- ✅ Screenshot capture on test failures
+- ✅ Parallel test execution
+- ✅ Configurable test environments
+
+### Viewing Test Results
+
+After a workflow run:
+1. Go to the **Actions** tab in GitHub
+2. Click on the workflow run
+3. Download artifacts to view detailed test reports
+4. Check individual job logs for execution details
 
 ## Available Tags
 
